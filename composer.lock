@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c64f99f16ad44a8a9e9b7ff2301e4bd",
+    "content-hash": "dde4735da77417b0f9e388cc234b7f5d",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -437,6 +437,53 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "hexor/lf-package-manager",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "package_manager",
+                "reference": "680f3f7fc48a8b2f05521a3d0f2c924cc9517dae",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=5.6.4",
+                "symfony/console": "~3.2",
+                "symfony/process": "~3.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.4",
+                "phpunit/phpunit": "~5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LaravelPackageManager\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Patrick Organ",
+                    "email": "patrick@permafrost-software.com"
+                },
+                {
+                    "name": "Hexor Chang",
+                    "email": "cupsoda@gmail.com"
+                }
+            ],
+            "description": "Package manager for Laravel 5+.",
+            "homepage": "https://permafrost-dev.com/laravel-package-manager/",
+            "keywords": [
+                "automation",
+                "composer",
+                "framework",
+                "laravel",
+                "laravel-package"
+            ]
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -2099,16 +2146,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.3.0",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4"
+                "reference": "f29dca382a6485c3cbe6379f0c61230167681937"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/polyfill-mbstring/e79d363049d1c2128f133a2667e4f4190904f7f4.zip",
-                "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4",
+                "url": "https://files.phpcomposer.com/files/symfony/polyfill-mbstring/f29dca382a6485c3cbe6379f0c61230167681937.zip",
+                "reference": "f29dca382a6485c3cbe6379f0c61230167681937",
                 "shasum": ""
             },
             "require": {
@@ -2120,7 +2167,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -2154,7 +2201,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-11-14T01:06:16+00:00"
+            "time": "2017-06-09T14:24:12+00:00"
         },
         {
             "name": "symfony/process",
@@ -2727,7 +2774,7 @@
             "version": "0.9.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/padraic/mockery.git",
+                "url": "https://github.com/mockery/mockery.git",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856"
             },
             "dist": {
@@ -4049,7 +4096,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "hexor/lf-package-manager": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

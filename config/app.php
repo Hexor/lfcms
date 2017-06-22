@@ -183,7 +183,8 @@ return [
 
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Overtrue\LaravelWechat\ServiceProvider::class,
-
+        LaravelPackageManager\LaravelPackageManagerServiceProvider::class,
+        
 
 
     ],
@@ -200,6 +201,7 @@ return [
     */
 
     'aliases' => [
+        
 
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
