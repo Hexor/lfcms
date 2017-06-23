@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dde4735da77417b0f9e388cc234b7f5d",
+    "content-hash": "5ef4cf6c49ea8ba3d7524d6369995345",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -439,50 +439,25 @@
             "time": "2017-03-20T17:10:46+00:00"
         },
         {
-            "name": "hexor/lf-package-manager",
+            "name": "hexor/wxpic",
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "package_manager",
-                "reference": "680f3f7fc48a8b2f05521a3d0f2c924cc9517dae",
+                "url": "packages/hexor/wxpic",
+                "reference": "46888d38467b5b8c3df4779cd6c1dd574c19a0b4",
                 "shasum": null
-            },
-            "require": {
-                "php": ">=5.6.4",
-                "symfony/console": "~3.2",
-                "symfony/process": "~3.2"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9.4",
-                "phpunit/phpunit": "~5.7"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "LaravelPackageManager\\": "src/"
+                    "Hexor\\WXPic\\": "src/"
                 }
             },
-            "license": [
-                "MIT"
-            ],
             "authors": [
                 {
-                    "name": "Patrick Organ",
-                    "email": "patrick@permafrost-software.com"
-                },
-                {
-                    "name": "Hexor Chang",
+                    "name": "张哲",
                     "email": "cupsoda@gmail.com"
                 }
-            ],
-            "description": "Package manager for Laravel 5+.",
-            "homepage": "https://permafrost-dev.com/laravel-package-manager/",
-            "keywords": [
-                "automation",
-                "composer",
-                "framework",
-                "laravel",
-                "laravel-package"
             ]
         },
         {
@@ -4097,7 +4072,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "hexor/lf-package-manager": 20
+        "hexor/wxpic": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

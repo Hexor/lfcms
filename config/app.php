@@ -184,7 +184,8 @@ return [
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Overtrue\LaravelWechat\ServiceProvider::class,
         LaravelPackageManager\LaravelPackageManagerServiceProvider::class,
-        
+        Hexor\WXPic\WXPicServiceProvider::class,
+
 
 
     ],
@@ -201,6 +202,7 @@ return [
     */
 
     'aliases' => [
+        'Wxpic' => Hexor\WXPic\Facades\WXPic::class,
         
 
         'App' => Illuminate\Support\Facades\App::class,
