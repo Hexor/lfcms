@@ -12,11 +12,11 @@
 */
 
 Route::get('/', function () {
+    \Illuminate\Support\Facades\Log::info("return welcome view now");
     return view('welcome');
 });
-
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

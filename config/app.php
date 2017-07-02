@@ -121,7 +121,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
@@ -181,10 +181,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Overtrue\LaravelWechat\ServiceProvider::class,
-        LaravelPackageManager\LaravelPackageManagerServiceProvider::class,
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
         Hexor\WXPic\WXPicServiceProvider::class,
+        LFPackage\Example\ExampleServiceProvider::class,
 
 
 
