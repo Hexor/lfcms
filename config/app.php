@@ -182,9 +182,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Overtrue\LaravelWechat\ServiceProvider::class,
-        Arcanedev\LogViewer\LogViewerServiceProvider::class,
-        Hexor\WXPic\WXPicServiceProvider::class,
         LFPackage\Example\ExampleServiceProvider::class,
+        LaravelPackageManager\LaravelPackageManagerServiceProvider::class,
+        LFPackage\Comment\CommentServiceProvider::class,
 
 
 
@@ -202,9 +202,6 @@ return [
     */
 
     'aliases' => [
-        'Wxpic' => Hexor\WXPic\Facades\WXPic::class,
-        
-
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
