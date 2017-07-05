@@ -182,10 +182,12 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Overtrue\LaravelWechat\ServiceProvider::class,
-        LFPackage\Example\ExampleServiceProvider::class,
-        LaravelPackageManager\LaravelPackageManagerServiceProvider::class,
+//        LFPackage\Example\ExampleServiceProvider::class,
         LFPackage\Comment\CommentServiceProvider::class,
-
+        Collective\Html\HtmlServiceProvider::class,
+        LaravelPackageManager\LaravelPackageManagerServiceProvider::class,
+        Hexor\WXPic\WXPicServiceProvider::class,
+//        \LFPackage\Comment\CommentServiceProvider::class
 
 
     ],
@@ -202,6 +204,10 @@ return [
     */
 
     'aliases' => [
+        'LFComment' => LFPackage\Comment\Facades\LFComment::class,
+        'Wxpic' => Hexor\WXPic\Facades\WXPic::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,

@@ -7,10 +7,11 @@
     "require": {
         "php": ">=5.6.4",
         "arcanedev/log-viewer": "^4.3",
-        "hexor/example": "*@dev",
-        "hexor/wxpic": "*@dev",
+        "hexor/comment": "*@dev",
+        "hexor/wxpic": "^1.1",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
+        "laravelcollective/html": "^5.4",
         "overtrue/laravel-lang": "~3.0",
         "overtrue/laravel-wechat": "~3.0",
         "overtrue/wechat": "^3.2"

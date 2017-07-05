@@ -1,9 +1,10 @@
 <?php
+// 删除评论
+Route::delete('/{comment_id}', 'CommentController@destroy');
 
-Route::get('/testapi', function (Request $request) {
-    return response()->json([
-        'status' => 1,
-        'msg' => '',
-        'data' => null
-    ]);
-});
+// 修改评论
+Route::patch('/{comment_id}', 'CommentController@update');
+
+// 点赞评论
+
+// 点踩评论

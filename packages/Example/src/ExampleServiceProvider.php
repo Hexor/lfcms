@@ -19,6 +19,7 @@ class ExampleServiceProvider extends ServiceProvider
             __DIR__.'/../config/example.php', 'example'
         );
         $this->app->register(RouteServiceProvider::class);
+
     }
 
     /**
@@ -59,6 +60,12 @@ class ExampleServiceProvider extends ServiceProvider
 
         // 数据库相关设置
         // Todo 需要具体场景试验 migrate 以及 seed 能不能被正常的使用
+
+        // publish 指定 serviceprovider
+        // php artisan vendor:publish --provider="LFPackage\xxxx\xxxxServiceProvider" --tag="db" --force
+
+        // migrate 指定路径: php artisan migrate --path="database/migrations/example" --refresh
+        // 同样的如果需要 rollback, 也可以在 rollback 的时候加上 path 参数
         $this->publishes([
             __DIR__.'/../database/migrations/' => database_path('migrations/example')
         ], 'db');

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use LFComment;
+use LFPackage\Comment\Repositories\CommentRepositoryInterface;
 
 class HomeController extends Controller
 {
+    protected $commentRepository;
+
     /**
      * Create a new controller instance.
      *
@@ -13,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -24,5 +27,13 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function showTestPost($post_id)
+    {
+
+        return view('post',[
+            'target_id' => $post_id
+        ]);
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0da3a696b454a9c7ecf4500069de3e4",
+    "content-hash": "d46810119d37d779551eb9c20a5e14ff",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -562,18 +562,18 @@
             "time": "2017-03-20T17:10:46+00:00"
         },
         {
-            "name": "hexor/example",
+            "name": "hexor/comment",
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "packages/Example",
-                "reference": "c92d17535979eb988bf920691426a2dac4ab8504",
+                "url": "packages/hexor/comment",
+                "reference": "51648a134577f0715e092df95446a31b15bd6e22",
                 "shasum": null
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "LFPackage\\Example\\": "src/"
+                    "LFPackage\\Comment\\": "src/"
                 }
             },
             "authors": [
@@ -585,12 +585,17 @@
         },
         {
             "name": "hexor/wxpic",
-            "version": "dev-master",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Hexor/wxpic.git",
+                "reference": "46888d38467b5b8c3df4779cd6c1dd574c19a0b4"
+            },
             "dist": {
-                "type": "path",
-                "url": "packages/hexor/wxpic",
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/Hexor/wxpic/46888d38467b5b8c3df4779cd6c1dd574c19a0b4.zip",
                 "reference": "46888d38467b5b8c3df4779cd6c1dd574c19a0b4",
-                "shasum": null
+                "shasum": ""
             },
             "type": "library",
             "autoload": {
@@ -598,12 +603,14 @@
                     "Hexor\\WXPic\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "张哲",
                     "email": "cupsoda@gmail.com"
                 }
-            ]
+            ],
+            "time": "2017-05-23T11:13:13+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -883,6 +890,60 @@
                 "psysh"
             ],
             "time": "2017-06-01T16:31:26+00:00"
+        },
+        {
+            "name": "laravelcollective/html",
+            "version": "v5.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "9b8f51e7a2368911c896f5d42757886bae0717b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/LaravelCollective/html/9b8f51e7a2368911c896f5d42757886bae0717b5.zip",
+                "reference": "9b8f51e7a2368911c896f5d42757886bae0717b5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "5.4.*",
+                "illuminate/routing": "5.4.*",
+                "illuminate/session": "5.4.*",
+                "illuminate/support": "5.4.*",
+                "illuminate/view": "5.4.*",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "illuminate/database": "5.4.*",
+                "mockery/mockery": "~0.9.4",
+                "phpunit/phpunit": "~5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                }
+            ],
+            "description": "HTML and Form Builders for the Laravel Framework",
+            "homepage": "http://laravelcollective.com",
+            "time": "2017-05-22T06:35:07+00:00"
         },
         {
             "name": "league/flysystem",
@@ -4217,8 +4278,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "hexor/example": 20,
-        "hexor/wxpic": 20
+        "hexor/comment": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
