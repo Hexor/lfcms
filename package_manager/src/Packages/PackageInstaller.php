@@ -15,12 +15,15 @@ class PackageInstaller
     public function install(Package $package, $options = null)
     {
         $cmd = $this->findComposerBinary().' require '.$package->getName();
-        if ($package->getVersion())
-            $cmd .= ':'.$package->getVersion();
-        if ($options['dev'] == true)
-            $cmd .= ' --dev';
-        if ($options['local-dev'] == true)
-            $cmd .= ':*@dev';
+//        if ($package->getVersion())
+//            $cmd .= ':'.$package->getVersion();
+//        if ($options['dev'] == true)
+//            $cmd .= ' --dev';
+//        if ($options['local-dev'] == true)
+//            $cmd .= ':*@dev';
+
+        // 暂时只支持本地包的安装了
+        $cmd .= ':*@dev';
 
         $runner = new RunExternalCommand($cmd);
         try {

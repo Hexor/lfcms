@@ -155,5 +155,45 @@ class PackageRegistration
         }
     }
 
+    public function registerFromInstallConfig($installConfig)
+    {
+        $this->command->info('Start registering ServiceProviders and Facades ...');
+
+        $serviceProviders = $installConfig['required_service_providers'];
+        $facades = $installConfig['required_facades'];
+
+
+        $searchLine = '// LFCMS Package Service Providers...';
+        foreach ($serviceProviders as $regline) {
+            $configAppFile = $this->config->read();
+            $regline .= "::class";
+            if (strpos($configAppFile, $regline)===false) {
+                $count = 0;
+                $config = str_replace($searchLine, $searchLine . PHP_EOL . "        $regline".",", $configAppFile, $count);
+
+                if ($count > 0) {
+                    $this->config->write($config);
+                }
+            }
+        }
+
+        $searchLine = "// LFCMS Package Facades...";
+        foreach ($facades as $facadeName => $facadeClass) {
+            $regline = "'".$facadeName."' => "."$facadeClass"."::class";
+            $configAppFile = $this->config->read();
+
+            if (strpos($configAppFile, $regline)===false) {
+                $count = 0;
+                $config = str_replace($searchLine, $searchLine . PHP_EOL . "        $regline".",", $configAppFile, $count);
+
+                if ($count > 0) {
+                    $this->config->write($config);
+                }
+            }
+        }
+
+        $this->command->info('Registering complete.');
+    }
+
 }
 

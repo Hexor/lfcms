@@ -182,13 +182,13 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Overtrue\LaravelWechat\ServiceProvider::class,
-//        LFPackage\Example\ExampleServiceProvider::class,
-        LFPackage\Comment\CommentServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         LaravelPackageManager\LaravelPackageManagerServiceProvider::class,
         Hexor\WXPic\WXPicServiceProvider::class,
-//        \LFPackage\Comment\CommentServiceProvider::class
 
+
+        // LFCMS Package Service Providers...
+        LFPackage\Comment\CommentServiceProvider::class,
 
     ],
 
@@ -204,7 +204,6 @@ return [
     */
 
     'aliases' => [
-        'LFComment' => LFPackage\Comment\Facades\LFComment::class,
         'Wxpic' => Hexor\WXPic\Facades\WXPic::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
@@ -242,6 +241,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
+
+        // LFCMS Package Facades...
+        'LFComment' => LFPackage\Comment\Facades\LFComment::class,
 
 
     ],

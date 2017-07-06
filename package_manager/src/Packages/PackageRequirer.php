@@ -59,12 +59,15 @@ class PackageRequirer
         }
 
         $locator = new PackageFileLocator($package);
-        $locator->locateFiles();
-
-        $classifier = new PackageFileClassifier();
-        $classifier->classifyFiles($locator->getFiles());
+        $locator->locateInstallConfig();
 
         $registrar = new PackageRegistration($this->command, $this->userPrompt);
-        $registrar->registerAll($package, $classifier->getFiles());
+        $registrar->registerFromInstallConfig($locator->getInstallConfig());
+
+        $publisher = new PackagePublisher($this->output);
+        $publisher->publish($locator->getInstallConfig());
+
+
+
     }
 }

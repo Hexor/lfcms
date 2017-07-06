@@ -22,6 +22,8 @@ class PackageFileLocator
 
     protected $files;
 
+    protected $installConfig;
+
     public function __construct(Package $package)
     {
         $this->package = $package;
@@ -84,10 +86,53 @@ class PackageFileLocator
        return $this->files;
     }
 
+    public function getInstallConfig()
+    {
+       return $this->installConfig;
+    }
+
+    public function setInstallConfig($installConfig)
+    {
+        $this->installConfig = $installConfig;
+    }
+
     public function clearFiles()
     {
         $this->files = new PackageFileList;
         return $this;
+    }
+
+    public function locateInstallConfig()
+    {
+        $fileiterator = new \RecursiveDirectoryIterator(
+                            $this->package->getPath(),
+                            \FilesystemIterator::KEY_AS_PATHNAME |
+                            \FilesystemIterator::CURRENT_AS_FILEINFO |
+                            \FilesystemIterator::SKIP_DOTS |
+                            \FilesystemIterator::FOLLOW_SYMLINKS
+                        );
+
+        //loop through the file list, and apply a filter, removing files that we know
+        //won't contain a Service Provider or Facade.
+        $iterator = new \RecursiveIteratorIterator(
+                        new PackageFileFilterIterator($fileiterator),
+                        \RecursiveIteratorIterator::SELF_FIRST
+                  );
+
+        $result = null;
+
+        //only allow php files with a filesize > 0
+        //TODO Implement FilenameFilter class here
+        foreach ($iterator as $file) {
+            if (!$file->isDir() && $file->getExtension() == 'php' && $file->getSize() > 0 && ends_with($file, 'install.php'))
+                $result = $file;
+        }
+
+        $result = require $result;
+
+        $this->setInstallConfig($result);
+
+        return $this->getInstallConfig();
     }
 
 }
