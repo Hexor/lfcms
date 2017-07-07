@@ -1,9 +1,9 @@
 {
-    "name": "hexor/example",
+    "name": "lfpackage/example",
     "authors": [
         {
-            "name": "张哲",
-            "email": "cupsoda@gmail.com"
+            "name": "",
+            "email": ""
         }
     ],
     "require": {},

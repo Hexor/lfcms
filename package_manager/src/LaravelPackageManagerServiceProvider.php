@@ -46,6 +46,7 @@ class LaravelPackageManagerServiceProvider extends ServiceProvider
         $this->commands([
           \LaravelPackageManager\Console\Commands\RequirePackageCommand::class,
           \LaravelPackageManager\Console\Commands\UnregisterPackageCommand::class,
+          \LaravelPackageManager\Console\Commands\CreatePackageCommand::class,
         ]);
     }
 
