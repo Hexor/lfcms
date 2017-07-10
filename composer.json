@@ -79,6 +79,7 @@
             "type": "path",
             "url": "packages/Example"
         },
+
         "packagist": {
             "type": "composer",
             "url": "https://packagist.phpcomposer.com"

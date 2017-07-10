@@ -16,9 +16,8 @@ class ComposerFile
      * of an existing file in basedir/config/.
      * @param string $name
      */
-    public function __construct($name)
+    public function __construct()
     {
-        $this->name = trim($name);
         $this->validateFilename();
     }
 

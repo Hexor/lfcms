@@ -3,10 +3,17 @@
 namespace LaravelPackageManager\Packages;
 
 use LaravelPackageManager\Packages\Package;
+use LaravelPackageManager\Support\ComposerFile;
 use LaravelPackageManager\Support\RunExternalCommand;
 
 class PackageInstaller
 {
+
+    public function __construct()
+    {
+        $this->projectComposer = new ComposerFile();
+    }
+
     /**
      * Install a package using composer.
      * @param Package $package
@@ -14,7 +21,8 @@ class PackageInstaller
      */
     public function install(Package $package, $options = null)
     {
-        $cmd = $this->findComposerBinary().' require '.$package->getName();
+        $this->handleComposerFile($package);
+        $cmd = $this->findComposerBinary().' require "'.$package->getName();
 //        if ($package->getVersion())
 //            $cmd .= ':'.$package->getVersion();
 //        if ($options['dev'] == true)
@@ -23,7 +31,7 @@ class PackageInstaller
 //            $cmd .= ':*@dev';
 
         // 暂时只支持本地包的安装了
-        $cmd .= ':*@dev';
+        $cmd .= ':*@dev"';
 
         $runner = new RunExternalCommand($cmd);
         try {
@@ -45,6 +53,23 @@ class PackageInstaller
         }
 
         return 'composer';
+    }
+
+    private function handleComposerFile($package)
+    {
+        $composer = $this->projectComposer->read();
+        $searchLine = '"repositories": {';
+        $regline = '"'.$package->getName().'": {"type": "path", "url": "'.$package->getName().'"}';
+
+        if (strpos($composer, $regline)===false) {
+            $count = 0;
+            $config = str_replace($searchLine, $searchLine . PHP_EOL . "        $regline".",", $composer, $count);
+
+            if ($count > 0) {
+                $this->projectComposer->write($config);
+            }
+        }
+
     }
 
 }

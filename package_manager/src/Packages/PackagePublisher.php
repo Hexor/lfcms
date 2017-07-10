@@ -33,12 +33,13 @@ class PackagePublisher
 
         foreach ($publishCommands as $cmd) {
             $runner = new RunExternalCommand($cmd);
-        }
 
-        try {
-            $runner->run();
-        } catch (Exception $e) {
-            echo 'Error: '.$e->getMessage().PHP_EOL;
+            try {
+                $runner->run();
+            } catch (Exception $e) {
+                echo 'Error: ' . $e->getMessage() . PHP_EOL;
+            }
         }
+        $this->output->info('Publishing complete ...');
     }
 }

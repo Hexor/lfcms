@@ -188,8 +188,7 @@ return [
 
 
         // LFCMS Package Service Providers...
-        LFPackage\Comment\CommentServiceProvider::class,
-
+//        LFPackage\TestVs\TestVsServiceProvider::class,
     ],
 
     /*
@@ -243,7 +242,6 @@ return [
         'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
 
         // LFCMS Package Facades...
-        'LFComment' => LFPackage\Comment\Facades\LFComment::class,
 
 
     ],

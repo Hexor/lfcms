@@ -1,0 +1,15 @@
+{
+    "name": "lfpackage/testvs",
+    "authors": [
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "LFPackage\\TestVs\\": "src/"
+        }
+    }
+}
