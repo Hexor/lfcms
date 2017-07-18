@@ -44,7 +44,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $prefix = $this->config('prefix');
         $namespace = $this->config('namespace');
-        $publishedRoutePath = base_path("routes/example/{$routeType}.php");
+        $publishedRoutePath = base_path("routes/lfpackage/example/{$routeType}.php");
         $builtinRoutePath =  __DIR__."/../Routes/{$routeType}.php";
 
         $routeFilePath = $publishedRoutePath;

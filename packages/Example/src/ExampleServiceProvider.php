@@ -16,7 +16,7 @@ class ExampleServiceProvider extends ServiceProvider
     {
 
         $this->mergeConfigFrom(
-            __DIR__.'/../config/example.php', 'example'
+            __DIR__.'/../config/lfpackage/example.php', 'example'
         );
         $this->app->register(RouteServiceProvider::class);
 
@@ -35,25 +35,25 @@ class ExampleServiceProvider extends ServiceProvider
 
         // 如果用户选择 publish, 那么系统会使用 publish 之后的 view, 而不是package 内的 view
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/example'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/lfpackage/example'),
         ], 'view');
 
         // 注意 laravel 只会将 public 下的文件作为资源文件加载, 所以对于资源文件来说, 必须
         // 在开发时, 需要在 public 文件夹下创建 vendor/example 文件夹
         // 在发布时, 将 public/vendor/example 下的内容丢到 package 的 resources/assets 文件夹中
         $this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/example'),
+            __DIR__.'/../resources/assets' => public_path('vendor/lfpackage/example'),
         ], 'view');
 
         // 如果用户选择 publish,那么系统会读取 publish 之后的 config, 而不是 package 内的 config
         $this->publishes([
-            __DIR__.'/../config/example.php' => config_path('example.php'),
+            __DIR__.'/../config/example.php' => config_path('lfpackage/example.php'),
         ], 'config');
 
         //如果模块有路由则将路由发布到项目中
         $routePrefix = config("example.route.prefix");
         $this->publishes([
-            __DIR__."/Routes/" => base_path("routes/{$routePrefix}/")
+            __DIR__."/Routes/" => base_path("routes/lfpackage/{$routePrefix}/")
         ], 'route');
 
 
@@ -64,18 +64,18 @@ class ExampleServiceProvider extends ServiceProvider
         // publish 指定 serviceprovider
         // php artisan vendor:publish --provider="LFPackage\xxxx\xxxxServiceProvider" --tag="db" --force
 
-        // migrate 指定路径: php artisan migrate --path="database/migrations/example" --refresh
+        // migrate 指定路径: php artisan migrate --path="database/migrations/lfpackage/example" --refresh
         // 同样的如果需要 rollback, 也可以在 rollback 的时候加上 path 参数
         $this->publishes([
-            __DIR__.'/../database/migrations/' => database_path('migrations/example')
+            __DIR__.'/../database/migrations/' => database_path('migrations/lfpackage/example')
         ], 'db');
 
         $this->publishes([
-            __DIR__.'/../database/seeds/' => database_path('seeds/example')
+            __DIR__.'/../database/seeds/' => database_path('seeds/lfpackage/example')
         ], 'db');
 
         $this->publishes([
-            __DIR__.'/../database/factories/' => database_path('factories/example')
+            __DIR__.'/../database/factories/' => database_path('factories/lfpackage/example')
         ], 'db');
 
         // 数据库可以不 publish, 直接用下面这种方式进行 load, load 之后, 执行 migrate 命令就可以将下面

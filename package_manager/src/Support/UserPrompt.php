@@ -63,4 +63,20 @@ class UserPrompt
         return false;
     }
 
+    /**
+     * Ask the user if they want to delete the published files
+     * @return boolean
+     */
+    public function promptToDeletePublish($tag)
+    {
+        if ($this->output->confirm("Delete published ".$tag." files?")) {
+            $this->output->info('Deleting published'.$tag.' files...');
+            return true;
+        }
+
+        $this->output->comment('Skipping delete of '.$tag.' files.');
+
+        return false;
+    }
+
 }

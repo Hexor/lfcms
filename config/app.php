@@ -188,7 +188,7 @@ return [
 
 
         // LFCMS Package Service Providers...
-//        LFPackage\TestVs\TestVsServiceProvider::class,
+        
     ],
 
     /*

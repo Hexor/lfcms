@@ -67,6 +67,7 @@
         "sort-packages": true
     },
     "repositories": {
+        "lfpackage/testvs": {"type": "path", "url": "packages/lfpackage/testvs"},
         "0": {
             "type": "path",
             "url": "packages/hexor/wxpic"

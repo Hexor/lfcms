@@ -59,7 +59,7 @@ class PackageInstaller
     {
         $composer = $this->projectComposer->read();
         $searchLine = '"repositories": {';
-        $regline = '"'.$package->getName().'": {"type": "path", "url": "'.$package->getName().'"}';
+        $regline = '"'.$package->getName().'": {"type": "path", "url": "packages/'.$package->getName().'"}';
 
         if (strpos($composer, $regline)===false) {
             $count = 0;

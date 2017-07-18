@@ -51,16 +51,16 @@ class PackageCreator
 
         // 复制文件夹
         $cmds[] = 'rm -rf packages/'.$lowerName;
-        $cmds[] = 'cp -r packages/Example packages/'.$lowerName;
+        $cmds[] = 'cp -r packages/Example packages/lfpackage/'.$lowerName;
 
         // 重命名文件名
-        $cmds[] = "find ".  base_path()."/packages/" . $lowerName  ." -name \"*Example*\"|rename 's/Example/".$packageName."/'";
-        $cmds[] = "find ".  base_path()."/packages/" . $lowerName  ." -name \"*example*\"|rename 's/example/".$lowerName."/'";
+        $cmds[] = "find ".  base_path()."/packages/lfpackage/" . $lowerName  ." -name \"*Example*\"|rename 's/Example/".$packageName."/'";
+        $cmds[] = "find ".  base_path()."/packages/lfpackage/" . $lowerName  ." -name \"*example*\"|rename 's/example/".$lowerName."/'";
 
         // 替换代码中的字符串
 //        grep oldString -rl /path | xargs sed -i "s/oldString/newString/g"
-        $cmds[] = "grep example -rl " . base_path()."/packages/" . $lowerName ." | xargs sed -i " . "\"s/example/" . $lowerName ."/g\"";
-        $cmds[] = "grep Example -rl " . base_path()."/packages/" . $lowerName." | xargs sed -i " . "\"s/Example/" . $packageName."/g\"";
+        $cmds[] = "grep example -rl " . base_path()."/packages/lfpackage/" . $lowerName ." | xargs sed -i " . "\"s/example/" . $lowerName ."/g\"";
+        $cmds[] = "grep Example -rl " . base_path()."/packages/lfpackage/" . $lowerName." | xargs sed -i " . "\"s/Example/" . $packageName."/g\"";
 
         $cmds[] = "php artisan package:require lfpackage/".$lowerName;
         foreach ($cmds as $cmd) {
