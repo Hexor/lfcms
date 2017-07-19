@@ -133,34 +133,36 @@ class PackageRemover
             }
         }
 
+        $paths = [];
         // 提示用户是否删除 publish 的view
         $deleteView = $this->userPrompt->promptToDeletePublish('view');
         if ($deleteView) {
-            $paths = [];
-            $paths[] = base_path()."public/vendor/lfpackage/"."$lowerName";
-            $paths[] = base_path()."resources/views/vendor/lfpackage/".$lowerName;
-            $paths[] = base_path()."resources/lang/vendor/lfpackage/".$lowerName;
-            foreach ($paths as $path) {
-                $this->deleteDirectory($path);
-            }
+            $paths[] = resource_path('views/vendor/lfpackage/'.$lowerName);
+            $paths[] = public_path('vendor/lfpackage/'.$lowerName);
         }
 
         // 提示用户是否删除 publish 的 db
         $deleteDB = $this->userPrompt->promptToDeletePublish('db');
         if ($deleteDB) {
-
+            $paths[] = database_path('migrations/lfpackage/'.$lowerName);
+            $paths[] = database_path('seeds/lfpackage/'.$lowerName);
+            $paths[] = database_path('factories/lfpackage/'.$lowerName);
         }
 
         // 提示用户是否删除 publish 的 config
         $deleteConfig = $this->userPrompt->promptToDeletePublish('config');
         if ($deleteConfig) {
-
+            $paths[] = config_path('lfpackage/'.$lowerName.'.php');
         }
 
-        // 提示用户是否删除 publish 的 config
+        // 提示用户是否删除 publish 的 route
         $deleteConfig = $this->userPrompt->promptToDeletePublish('route');
         if ($deleteConfig) {
+            $paths[] = base_path("routes/lfpackage/".$lowerName);
+        }
 
+        foreach ($paths as $path) {
+            $this->deleteDirectory($path);
         }
 
     }

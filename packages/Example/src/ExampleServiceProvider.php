@@ -51,9 +51,8 @@ class ExampleServiceProvider extends ServiceProvider
         ], 'config');
 
         //如果模块有路由则将路由发布到项目中
-        $routePrefix = config("example.route.prefix");
         $this->publishes([
-            __DIR__."/Routes/" => base_path("routes/lfpackage/{$routePrefix}/")
+            __DIR__."/Routes/" => base_path("routes/lfpackage/example/")
         ], 'route');
 
 
