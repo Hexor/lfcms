@@ -3,10 +3,12 @@
 namespace LaravelPackageManager\Packages;
 
 use Illuminate\Console\Command;
+use LaravelPackageManager\Packages\Files\PackageFileLocator;
+use LaravelPackageManager\Support\CommandOptions;
+use LaravelPackageManager\Support\ConfigurationFile;
 use LaravelPackageManager\Support\Output;
 use LaravelPackageManager\Support\RunExternalCommand;
 use LaravelPackageManager\Support\UserPrompt;
-use LaravelPackageManager\Support\CommandOptions;
 
 class PackageRemover
 {
@@ -30,6 +32,7 @@ class PackageRemover
      * @var \Illuminate\Console\Command
      */
     protected $command;
+    protected $config;
 
     public function __construct(Command $command)
     {
@@ -37,6 +40,7 @@ class PackageRemover
         $this->output = new Output($this->command);
         $this->userPrompt = new UserPrompt($this->output);
         $this->options = new CommandOptions([]);
+        $this->config = new ConfigurationFile('app');
     }
 
     public function runCommand($cmd)
@@ -58,6 +62,44 @@ class PackageRemover
         }
     }
 
+    public function unregisterFromInstallConfig($installConfig)
+    {
+        // TODO 模仿右侧的函数完成取消appconfig中文件的内容
+        $this->command->info('Start unregistering ServiceProviders and Facades ...');
+
+        $serviceProviders = $installConfig['required_service_providers'];
+        $facades = $installConfig['required_facades'];
+
+        foreach ($serviceProviders as $regline) {
+            $configAppFile = $this->config->read();
+            $regline .= "::class,";
+
+            if (strpos($configAppFile, $regline)!=false) {
+                $count = 0;
+                $config = str_replace($regline, '', $configAppFile, $count);
+
+                if ($count > 0) {
+                    $this->config->write($config);
+                }
+            }
+        }
+
+        foreach ($facades as $facadeName => $facadeClass) {
+            $regline = "'".$facadeName."' => "."$facadeClass"."::class,";
+            $configAppFile = $this->config->read();
+
+            if (strpos($configAppFile, $regline)!=false) {
+                $count = 0;
+                $config = str_replace($regline, '', $configAppFile, $count);
+
+                if ($count > 0) {
+                    $this->config->write($config);
+                }
+            }
+        }
+
+        $this->command->info('Unregistering complete.');
+    }
     /**
      * Install a package, and register any service providers and/or facades it provides.
      * @param string $packageName
@@ -67,11 +109,13 @@ class PackageRemover
     {
         $lowerName = strtolower($packageName);
         $cmds = [];
+        $package = new Package($packageName);
 
+        $locator = new PackageFileLocator($package);
+        $locator->locateInstallConfig();
 
         // 删除 app/config 中的内容
-        // package:unregister
-        $cmds[] = 'php artisan package:unregister '.$packageName;
+        $this->unregisterFromInstallConfig($locator->getInstallConfig());
 
         // 去掉软连接
         // composer remove

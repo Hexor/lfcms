@@ -62,7 +62,11 @@ class PackageCreator
         $cmds[] = "grep example -rl " . base_path()."/packages/lfpackage/" . $lowerName ." | xargs sed -i " . "\"s/example/" . $lowerName ."/g\"";
         $cmds[] = "grep Example -rl " . base_path()."/packages/lfpackage/" . $lowerName." | xargs sed -i " . "\"s/Example/" . $packageName."/g\"";
 
-        $cmds[] = "php artisan package:require lfpackage/".$lowerName;
+        if ($this->output->confirm("Require package now?")){
+            $cmds[] = "php artisan package:require lfpackage/".$lowerName;
+        }
+
+
         foreach ($cmds as $cmd) {
             $this->command->info($cmd);
 

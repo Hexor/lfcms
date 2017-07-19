@@ -67,6 +67,7 @@
         "sort-packages": true
     },
     "repositories": {
+        "lfpackage/testrm": {"type": "path", "url": "packages/lfpackage/testrm"},
         "lfpackage/testvs": {"type": "path", "url": "packages/lfpackage/testvs"},
         "0": {
             "type": "path",
@@ -79,11 +80,6 @@
         "2": {
             "type": "path",
             "url": "packages/Example"
-        },
-
-        "packagist": {
-            "type": "composer",
-            "url": "https://packagist.phpcomposer.com"
         }
     }
 }

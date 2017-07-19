@@ -1,0 +1,15 @@
+{
+    "name": "lfpackage/testrm",
+    "authors": [
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "LFPackage\\TestRm\\": "src/"
+        }
+    }
+}

@@ -1,10 +1,10 @@
 <?php
-namespace LFPackage\Example;
+namespace LFPackage\TestRm;
 
 use Illuminate\Support\ServiceProvider;
-use LFPackage\Example\Providers\RouteServiceProvider;
+use LFPackage\TestRm\Providers\RouteServiceProvider;
 
-class ExampleServiceProvider extends ServiceProvider
+class TestRmServiceProvider extends ServiceProvider
 {
     /**
      * 执行顺序: 1th
@@ -16,7 +16,7 @@ class ExampleServiceProvider extends ServiceProvider
     {
 
         $this->mergeConfigFrom(
-            dirname(__DIR__).'/config/example.php', 'example'
+            dirname(__DIR__).'/config/testrm.php', 'testrm'
         );
         $this->app->register(RouteServiceProvider::class);
 
@@ -31,27 +31,27 @@ class ExampleServiceProvider extends ServiceProvider
     public function boot()
     {
         // 初始化 view 相关
-        $this->loadViewsFrom(dirname(__DIR__).'/resources/views', 'example');
+        $this->loadViewsFrom(dirname(__DIR__).'/resources/views', 'testrm');
 
         // 如果用户选择 publish, 那么系统会使用 publish 之后的 view, 而不是package 内的 view
         $this->publishes([
-            dirname(__DIR__).'/resources/views' => resource_path('views/vendor/lfpackage/example'),
+            dirname(__DIR__).'/resources/views' => resource_path('views/vendor/lfpackage/testrm'),
         ], 'view');
 
         // 注意 laravel 只会将 public 下的文件作为资源文件加载, 所以对于资源文件来说, 必须
-        // 在开发时, 需要在 public 文件夹下创建 vendor/example 文件夹
-        // 在发布时, 将 public/vendor/example 下的内容丢到 package 的 resources/assets 文件夹中
+        // 在开发时, 需要在 public 文件夹下创建 vendor/testrm 文件夹
+        // 在发布时, 将 public/vendor/testrm 下的内容丢到 package 的 resources/assets 文件夹中
         $this->publishes([
-            dirname(__DIR__).'/resources/assets' => public_path('vendor/lfpackage/example'),
+            dirname(__DIR__).'/resources/assets' => public_path('vendor/lfpackage/testrm'),
         ], 'view');
 
         // 如果用户选择 publish,那么系统会读取 publish 之后的 config, 而不是 package 内的 config
         $this->publishes([
-            dirname(__DIR__).'/config/example.php' => config_path('lfpackage/example.php'),
+            dirname(__DIR__).'/config/testrm.php' => config_path('lfpackage/testrm.php'),
         ], 'config');
 
         //如果模块有路由则将路由发布到项目中
-        $routePrefix = config("example.route.prefix");
+        $routePrefix = config("testrm.route.prefix");
         $this->publishes([
             __DIR__."/Routes/" => base_path("routes/lfpackage/{$routePrefix}/")
         ], 'route');
@@ -64,18 +64,18 @@ class ExampleServiceProvider extends ServiceProvider
         // publish 指定 serviceprovider
         // php artisan vendor:publish --provider="LFPackage\xxxx\xxxxServiceProvider" --tag="db" --force
 
-        // migrate 指定路径: php artisan migrate --path="database/migrations/lfpackage/example" --refresh
+        // migrate 指定路径: php artisan migrate --path="database/migrations/lfpackage/testrm" --refresh
         // 同样的如果需要 rollback, 也可以在 rollback 的时候加上 path 参数
         $this->publishes([
-            dirname(__DIR__).'/database/migrations/' => database_path('migrations/lfpackage/example')
+            dirname(__DIR__).'/database/migrations/' => database_path('migrations/lfpackage/testrm')
         ], 'db');
 
         $this->publishes([
-            dirname(__DIR__).'/database/seeds/' => database_path('seeds/lfpackage/example')
+            dirname(__DIR__).'/database/seeds/' => database_path('seeds/lfpackage/testrm')
         ], 'db');
 
         $this->publishes([
-            dirname(__DIR__).'/database/factories/' => database_path('factories/lfpackage/example')
+            dirname(__DIR__).'/database/factories/' => database_path('factories/lfpackage/testrm')
         ], 'db');
 
         // 数据库可以不 publish, 直接用下面这种方式进行 load, load 之后, 执行 migrate 命令就可以将下面
