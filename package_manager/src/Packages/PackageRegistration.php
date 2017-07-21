@@ -23,8 +23,10 @@ class PackageRegistration
 
     /**
      * Register a facade or service provider within a package.
+     * 现在已经不使用这个函数来进行注册了, 转而使用 registerFromInstallConfig 直接从config里面读取信息进行注册
      * @param Package $package
      * @param ItemInformation $info
+     * @return bool
      */
     public function register(Package $package, ItemInformation $info)
     {
@@ -107,6 +109,7 @@ class PackageRegistration
      * Register mutliple facades/service providers.
      * @param Package $package
      * @param array $infos
+     * @return bool
      */
     public function registerAll(Package $package, array $infos)
     {
@@ -123,6 +126,7 @@ class PackageRegistration
      * Unregister mutliple facades/service providers.
      * @param Package $package
      * @param array $infos
+     * @return bool
      */
     public function unregisterAll(Package $package, array $infos)
     {

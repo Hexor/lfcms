@@ -189,6 +189,11 @@ return [
 
         // LFCMS Package Service Providers...
         
+        
+        
+        
+        LFPackage\TestRm\TestRmServiceProvider::class,
+        
 
     ],
 
@@ -243,6 +248,7 @@ return [
         'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
 
         // LFCMS Package Facades...
+        'LFTestRm' => LFPackage\TestRm\Facades\LFTestRm::class,
         
 
 

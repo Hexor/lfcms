@@ -52,6 +52,7 @@ class PackageRequirer
      */
     public function require($packageName, array $options)
     {
+        $packageName = "lfpackage/".$packageName;
         $package = new Package($packageName);
         if (!$package->isInstalled() || !$options['register-only']) { // (is_null($options['register-only']) || $options['register-only'] == false)) {
             $installer = new PackageInstaller;

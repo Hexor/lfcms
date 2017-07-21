@@ -21,7 +21,7 @@ class PackageInstaller
      */
     public function install(Package $package, $options = null)
     {
-        $this->handleComposerFile($package);
+        $this->addRepoPaths($package);
         $cmd = $this->findComposerBinary().' require "'.$package->getName();
 //        if ($package->getVersion())
 //            $cmd .= ':'.$package->getVersion();
@@ -55,7 +55,11 @@ class PackageInstaller
         return 'composer';
     }
 
-    private function handleComposerFile($package)
+    /**
+     * 在项目composer文件中加入本地包的路径, 这样才能使用 composer 的本地安装方法 :*@dev
+     * @param $package
+     */
+    private function addRepoPaths($package)
     {
         $composer = $this->projectComposer->read();
         $searchLine = '"repositories": {';

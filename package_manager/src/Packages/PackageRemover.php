@@ -5,6 +5,7 @@ namespace LaravelPackageManager\Packages;
 use Illuminate\Console\Command;
 use LaravelPackageManager\Packages\Files\PackageFileLocator;
 use LaravelPackageManager\Support\CommandOptions;
+use LaravelPackageManager\Support\ComposerFile;
 use LaravelPackageManager\Support\ConfigurationFile;
 use LaravelPackageManager\Support\Output;
 use LaravelPackageManager\Support\RunExternalCommand;
@@ -33,6 +34,7 @@ class PackageRemover
      */
     protected $command;
     protected $config;
+    protected $projectComposer;
 
     public function __construct(Command $command)
     {
@@ -41,6 +43,7 @@ class PackageRemover
         $this->userPrompt = new UserPrompt($this->output);
         $this->options = new CommandOptions([]);
         $this->config = new ConfigurationFile('app');
+        $this->projectComposer = new ComposerFile();
     }
 
     public function runCommand($cmd)
@@ -76,7 +79,7 @@ class PackageRemover
 
             if (strpos($configAppFile, $regline)!=false) {
                 $count = 0;
-                $config = str_replace($regline, '', $configAppFile, $count);
+                $config = str_replace($regline . PHP_EOL . '        ', '', $configAppFile, $count);
 
                 if ($count > 0) {
                     $this->config->write($config);
@@ -90,7 +93,7 @@ class PackageRemover
 
             if (strpos($configAppFile, $regline)!=false) {
                 $count = 0;
-                $config = str_replace($regline, '', $configAppFile, $count);
+                $config = str_replace($regline . PHP_EOL . '        ', '', $configAppFile, $count);
 
                 if ($count > 0) {
                     $this->config->write($config);
@@ -109,6 +112,10 @@ class PackageRemover
     {
         $lowerName = strtolower($packageName);
         $cmds = [];
+
+        $packageName = "lfpackage/".$packageName;
+        $this->removeRepoPaths($packageName);
+
         $package = new Package($packageName);
 
         $locator = new PackageFileLocator($package);
@@ -165,5 +172,21 @@ class PackageRemover
             $this->deleteDirectory($path);
         }
 
+    }
+
+    private function removeRepoPaths($packageName)
+    {
+        $composer = $this->projectComposer->read();
+        $searchLine = '"'.$packageName.'": {"type": "path", "url": "packages/'.$packageName.'"},';
+
+        if (strpos($composer, $searchLine)!=false) {
+
+            $count = 0;
+            $config = str_replace($searchLine . PHP_EOL . '        ', '', $composer, $count);
+
+            if ($count > 0) {
+                $this->projectComposer->write($config);
+            }
+        }
     }
 }
